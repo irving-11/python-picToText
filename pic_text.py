@@ -3,10 +3,11 @@ import argparse
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument('file')
-parser.add_argument('-o', '--output')
-parser.add_argument('--width', type=int, default=80)
-parser.add_argument('--height', type=int, default=80)
+parser.add_argument('file')                             # 输入文件
+parser.add_argument('-o', '--output')                   # 输出文件
+parser.add_argument('--width', type=int, default=80)    # 输出字符画宽
+parser.add_argument('--height', type=int, default=80)   # 输出字符画高
+#获取参数
 args = parser.parse_args()
 IMG = args.file
 WIDTH = args.width
@@ -16,7 +17,7 @@ ascii_char = list(
     "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~<>i!lI;:,\"^`'. ")
 
 
-# RGB值转字符串
+# RGB值转字符
 def get_char(r, g, b, alpha=256):
     if alpha == 0:
         return ' '
@@ -26,7 +27,7 @@ def get_char(r, g, b, alpha=256):
     return ascii_char[int(gray / unit)]
 
 
-if __name__ == '__main__':
+if __name__ == '__main__':   ##
     im = Image.open(IMG)
     im = im.resize((WIDTH, HEIGHT), Image.NEAREST)
     txt = ""
